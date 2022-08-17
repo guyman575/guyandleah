@@ -1,23 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>W3.CSS Template</title>
+<title>Guy And Leah</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-body,h1,h2{font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-p {line-height: 2}
-.bgimg, .bgimg2 {
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-.bgimg {background-image: url("/w3images/wedding_couple.jpg")}
-.bgimg2 {background-image: url("/w3images/flowers.jpg")}
-</style>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 </head>
 <body>
 
@@ -26,6 +15,7 @@ p {line-height: 2}
   <div class="w3-display-middle w3-text-white w3-center">
     <h1 class="w3-jumbo">Leah & Guy</h1>
     <h2><b>07.08.2023</b></h2>
+    <h2><b>Olympic Valley, CA</b></h2>
   </div>
 </header>
 
@@ -43,10 +33,18 @@ p {line-height: 2}
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
   <div class="w3-content">
     <h1 class="w3-center w3-text-grey"><b>Leah & Guy</b></h1>
-    <img class="w3-round w3-grayscale-min" src="/w3images/wedding_couple2.jpg" style="width:100%;margin:32px 0">
-    <p><i>You all know us. And we all know you. We are getting married lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint
-      occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-      laboris nisi ut aliquip ex ea commodo consequat.</i>
+    <img class="w3-round w3-grayscale-min" src="/static/images/DSC_8041.jpg" style="width:30%;margin-right:50px ;float:left">
+    <p>
+      <i>
+        We are so excited to have you come celebrate with us in our 
+      favorite place in the world! Tahoe is the place we first moved in together, 
+      the place we got engaged, and now the place we call home. It is very special to
+      us and that is why we cannot wait to have you all here. We hope you will enjoy
+      the beautiful mountain and lake views as much as we do. blah blah blah, blah blah
+      text blah blah text example blah blah blah. more text blah blah more text blah blah
+      lorem ipsum blah blah example blah wedding crap who cares blah blah blah stuff
+      about us and our love blah blah lovey dovey yay who gives a shit
+    </i>
     </p><br>
     <p class="w3-center"><a href="#wedding" class="w3-button w3-black w3-round w3-padding-large w3-large">Wedding Details</a></p>
   </div>
@@ -55,8 +53,7 @@ p {line-height: 2}
 <!-- Background photo -->
 <div class="w3-display-container bgimg2">
   <div class="w3-display-middle w3-text-white w3-center">
-    <h1 class="w3-jumbo">You Are Invited</h1><br>
-    <h2>Of course..</h2>
+    <h1 class="w3-jumbo"></h1><br>
   </div>
 </div>
 
@@ -64,17 +61,18 @@ p {line-height: 2}
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min w3-center" id="wedding">
   <div class="w3-content">
     <h1 class="w3-text-grey"><b>THE WEDDING</b></h1>
-    <img class="w3-round-large w3-grayscale-min" src="/w3images/wedding_location.jpg" style="width:100%;margin:64px 0">
+    <img class="w3-round-large w3-grayscale-min" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/08/9f/29/56/resort-at-squaw-creek.jpg?w=1200&h=-1&s=1" style="width:50%;margin:64px 0">
     <div class="w3-row">
       <div class="w3-half">
         <h2>When</h2>
-        <p>Wedding Ceremony - 2:00pm</p>
-        <p>Reception & Dinner - 5:00pm</p>
+        <p>July 8, 2023</p>
+        <p>Wedding Ceremony - 5:30pm</p>
+        <p>Reception & Dinner - 7:00pm</p>
       </div>
       <div class="w3-half">
         <h2>Where</h2>
-        <p>Some place, an address</p>
-        <p>Some where, some address</p>
+        <p>Resort at Squaw Creek</p>
+        <p>Olympic Valley, CA</p>
       </div>
     </div>
   </div>
@@ -110,12 +108,6 @@ p {line-height: 2}
     </div>
   </div>
 </div>
-
-<!-- Footer -->
-<footer class="w3-center w3-black w3-padding-16">
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" title="W3.CSS" target="_blank" class="w3-hover-text-green">w3.css</a></p>
-</footer>
-<div class="w3-hide-small" style="margin-bottom:32px"> </div>
 
 </body>
 </html>
