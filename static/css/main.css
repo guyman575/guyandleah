@@ -6,13 +6,13 @@ p {line-height: 2}
   background-position: center;
   background-size: cover;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
   .bgimg {
     background-image: url("/static/images/DSC_7943.jpg");
   }
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 951px) {
   .bgimg {
     background-image: url("/static/images/Ind.jpg");
   }
