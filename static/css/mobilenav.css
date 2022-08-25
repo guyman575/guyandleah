@@ -3,13 +3,11 @@
     overflow: hidden;
     background-color: #333;
     position: relative;
-    z-index: 1;
   }
   
   /* Hide the links inside the navigation menu (except for logo/home) */
   .topnav #myLinks {
     display: none;
-    z-index: 1;
   }
   
   /* Style navigation menu links */
@@ -19,7 +17,6 @@
     text-decoration: none;
     font-size: 17px;
     display: block;
-    z-index: 1;
   }
   
   /* Style the hamburger menu */
@@ -29,7 +26,6 @@
     position: absolute;
     right: 0;
     top: 0;
-    z-index: 1;
   }
   
   /* Add a grey background color on mouse-over */
