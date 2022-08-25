@@ -12,3 +12,6 @@ def home():
 @app.route("/travel")
 def travel():
     return render_template("travel.html")
+
+if __name__ == '__main__':
+    app.run(host='localhost', port=9874)
