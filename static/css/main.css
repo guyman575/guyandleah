@@ -8,15 +8,26 @@ p {line-height: 2}
 }
 @media screen and (max-width: 950px) {
   .bgimg {
-    background-image: url("/static/images/DSC_7943_comp.jpg");
+    background-image: url("/static/images/donner_back_comp.jpg");
+    opacity: .75;
   }
 }
 
 @media screen and (min-width: 951px) {
   .bgimg {
-    background-image: url("/static/images/Ind.jpg");
+    background-image: url("/static/images/fake_engagement.jpg");
+    opacity: .75;
   }
 }
 
 
 .bgimg2 {background-image: url("/static/images/DSC_8162.jpg")}
+
+.wedding-day {
+
+  background-color:#B2AC88 !important;
+}
+
+.w3-half {
+  font-family: "Raleway" !important;
+}
