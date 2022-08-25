@@ -6,5 +6,17 @@ p {line-height: 2}
   background-position: center;
   background-size: cover;
 }
-.bgimg {background-image: url("/static/images/Ind.jpg")}
+@media screen and (max-width: 768px) {
+  .bgimg {
+    background-image: url("/static/images/DSC_7943.jpg");
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .bgimg {
+    background-image: url("/static/images/Ind.jpg");
+  }
+}
+
+
 .bgimg2 {background-image: url("/static/images/DSC_8162.jpg")}
