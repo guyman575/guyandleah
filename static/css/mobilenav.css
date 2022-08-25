@@ -3,6 +3,7 @@
     overflow: hidden;
     background-color: #333;
     position: relative;
+    z-index: 1;
   }
   
   /* Hide the links inside the navigation menu (except for logo/home) */
