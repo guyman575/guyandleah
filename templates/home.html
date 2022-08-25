@@ -10,6 +10,13 @@
 </head>
 <body>
 
+{% if request.MOBILE %}
+  {% include 'mobilenav.html' %}
+{% else %}
+  {% include 'nav.html' %}
+{% endif %}
+  
+
 <!-- Header / Home-->
 <header class="w3-display-container w3-wide bgimg w3-grayscale-min" id="home">
   <div class="w3-display-middle w3-text-white w3-center">
@@ -19,7 +26,6 @@
   </div>
 </header>
 
-{% include 'nav.html' %}
 
 <!-- About / Guy And Leah -->
 <div class="w3-container w3-padding-64 w3-pale-red w3-grayscale-min" id="us">
