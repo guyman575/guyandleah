@@ -13,5 +13,13 @@ def home():
 def travel():
     return render_template("travel.html")
 
+@app.route("/thingstodo")
+def thingstodo():
+    return render_template("thingstodo.html")
+
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")
+
 if __name__ == '__main__':
     app.run(host='localhost', port=9874)
