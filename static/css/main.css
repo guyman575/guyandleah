@@ -28,10 +28,18 @@ p {line-height: 2}
 }
 
 .bg-sage {
-  background-color: #B2AC88 !important;
+  background-color: #B1BCA0 !important;
+}
+
+.bg-smoky-green {
+  background-color: #D0D9CD !important;
 }
 
 .standard-text {
   text-align: center;
   font-family: "Raleway" !important;
+}
+
+.first-section {
+  padding-top:  40px !important;
 }
