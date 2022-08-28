@@ -43,3 +43,8 @@ p {line-height: 2}
 .first-section {
   padding-top:  40px !important;
 }
+
+.bullet-list {
+  display: inline-block;
+  text-align: left;
+}
