@@ -32,5 +32,9 @@ def thingstodo():
 def faq():
     return render_template("faq.html")
 
+@app.route("/registry")
+def registry():
+    return render_template("registry.html")
+
 if __name__ == '__main__':
     app.run(host='localhost', port=8000)
