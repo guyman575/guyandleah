@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FAQ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+<div class="bg-smoky-green">{% include 'newnav.html' %}</div>
+<div class="w3-container w3-padding-64 bg-smoky-green first-section" id="us">
+    <div class="w3-content">
+      <h3 class="w3-center">Where should I stay?</h3>
+      <p class="standard-text">Please refer to our <a href="{{ url_for('travel') }}">lodging section</a>. For folks who do not want to stay within Olympic Valley, Tahoe City & Truckee have many lodging options. Note: transportation will not be provided from these locations and you will need to drive to the venue.</p></br>
+      <h3 class="w3-center">Do I need to rent a car?</h3>
+      <p class="standard-text">TODO</p></br>
+      <h3 class="w3-center">How should I get to the venue? </h3>
+      <p class="standard-text">If you are staying in Olympic Valley we will be providing shuttle transportation. Prior to the wedding, we will send out a form where folks can let us know where they are staying and we will arrange pick-up locations. If you are not staying in Olympic Valley you will need to drive to The Resort at Squaw Creek. Note: Uber/Lyfts are not reliable in the North Lake Tahoe area and we do not advise relying on them as your mode of transportation over the weekend.</p></br>
+    </div>
+</div>
+</body>
+</html>
