@@ -42,6 +42,7 @@ p {line-height: 2}
 
 .first-section {
   padding-top:  40px !important;
+  height: 100% !important;
 }
 
 .bullet-list {
