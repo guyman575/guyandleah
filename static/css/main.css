@@ -48,3 +48,9 @@ p {line-height: 2}
   display: inline-block;
   text-align: left;
 }
+
+.hr-line {
+  border-top-color: black !important;
+  width: 50% !important;
+  margin: auto;
+}
