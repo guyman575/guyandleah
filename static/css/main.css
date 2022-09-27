@@ -58,6 +58,7 @@ p {line-height: 2}
 
 .faq-main {
   height: 100% !important;
+  overflow: auto !important;
 }
 
 .bullet-list {
@@ -73,10 +74,4 @@ p {line-height: 2}
 
 .header-text {
   background-color: rgba(250, 250, 250, .4)
-}
-
-.box {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
 }
