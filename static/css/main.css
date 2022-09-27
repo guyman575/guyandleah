@@ -81,3 +81,12 @@ p {line-height: 2}
   flex-flow: column !important;
   height: 100% !important;
 }
+
+.hotel-name {
+  font-size: 20px;
+  margin-bottom: 0px;
+}
+
+.hotel-details {
+  margin-top:  0px;
+}
