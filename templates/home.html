@@ -15,7 +15,13 @@
   {% include 'newnav.html' %}
 
   <div class="w3-display-middle w3-text-black w3-center header-text">
-    <h1 class="w3-jumbo">Leah & Guy</h1>
+    <h1 class="w3-jumbo">
+      {% if request.MOBILE %}
+        Leah &<br>Guy
+      {% else %}
+        Leah & Guy
+      {% endif %}
+    </h1>
     <h2><b>07.08.2023</b></h2>
     <h2><b>Olympic Valley, CA</b></h2>
   </div>
