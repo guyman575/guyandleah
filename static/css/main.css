@@ -8,15 +8,19 @@ p {line-height: 2}
 }
 @media screen and (max-width: 950px) {
   .bgimg {
-    background-image: url("/static/images/donner_back_comp.jpg");
+    background-image: url("/static/images/cute_look.jpg");
     opacity: .75;
   }
 }
 
 @media screen and (min-width: 951px) {
   .bgimg {
-    background-image: url("/static/images/fake_engagement.jpg");
+    background-image: url("/static/images/donner-dip.jpg");
     opacity: .75;
+  }
+
+  .header-text {
+    padding: 10px;
   }
 }
 
@@ -40,6 +44,11 @@ p {line-height: 2}
   font-family: "Raleway" !important;
 }
 
+.left-text {
+  text-align: left;
+  font-family: "Raleway" !important;
+}
+
 .first-section {
   padding-top:  40px !important;
 }
@@ -57,4 +66,8 @@ p {line-height: 2}
   border-top-color: black !important;
   width: 50% !important;
   margin: auto;
+}
+
+.header-text {
+  background-color: rgba(250, 250, 250, .4)
 }
