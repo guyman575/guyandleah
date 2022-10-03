@@ -1,8 +1,17 @@
-body,h1,h2{font-family: "Raleway", sans-serif}
+@import "https://fonts.googleapis.com/css?family=Dancing Script";
+@import "https://fonts.googleapis.com/css?family=Josefin Sans";
+
+h1 {font-family: "Dancing Script"}
 body, html {
   height: 100%;
 }
 body {min-height: 100%}
+
+body,h2 {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: lighter;
+}
+
 p {line-height: 2}
 .bgimg, .bgimg2 {
   min-height: 100%;
@@ -31,7 +40,7 @@ p {line-height: 2}
 .bgimg2 {background-image: url("/static/images/DSC_8162.jpg")}
 
 .w3-row {
-  font-family: "Raleway" !important;
+  font-family: "Josefin Sans" !important;
 }
 
 .bg-sage {
@@ -44,12 +53,12 @@ p {line-height: 2}
 
 .standard-text {
   text-align: center;
-  font-family: "Raleway" !important;
+  font-family: "Josefin Sans" !important;
 }
 
 .left-text {
   text-align: left;
-  font-family: "Raleway" !important;
+  font-family: "Josefin Sans" !important;
 }
 
 .first-section {
@@ -75,6 +84,7 @@ p {line-height: 2}
 .name-text {
   font-size: 38px;
   white-space: nowrap;
+  font-family: "Josefin Sans";
 }
 
 .header-text {
@@ -84,6 +94,7 @@ p {line-height: 2}
 
 .date-text {
   font-size: 28px;
+  font-family: "Josefin Sans";
 }
 
 
@@ -100,4 +111,8 @@ p {line-height: 2}
 
 .hotel-details {
   margin-top:  0px;
+}
+
+.extra-margin {
+  margin-bottom: 30px;
 }
