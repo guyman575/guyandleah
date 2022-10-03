@@ -52,11 +52,14 @@ p {line-height: 2}
 }
 
 .standard-text {
+  padding-left: 15px;
+  padding-right: 15px;
   text-align: center;
   font-family: "Josefin Sans" !important;
 }
 
 .left-text {
+  padding-left: 20px;
   text-align: left;
   font-family: "Josefin Sans" !important;
 }
