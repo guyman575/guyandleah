@@ -2,6 +2,13 @@ body {
   font-family: "Josefin Sans";
 }
 
+.navbar-container {
+  position:fixed;
+  width:100%;
+  /*LMAO*/
+  z-index: 5000;
+}
+
 .sidebar {
   height: 100%;
   width: 0%;
@@ -40,6 +47,7 @@ body {
   font-size: 20px;
   cursor: pointer;
   background-color: transparent;
+  position:fixed;
   color: black;
   padding: 10px 15px;
   border: none;
