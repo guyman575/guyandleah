@@ -72,9 +72,20 @@ p {line-height: 2}
   margin: auto;
 }
 
-.header-text {
-  background-color: rgba(250, 250, 250, .4)
+.name-text {
+  font-size: 38px;
+  white-space: nowrap;
 }
+
+.header-text {
+  background-color: rgba(250, 250, 250, .4);
+  padding: 0px 5px 0px 5px;
+}
+
+.date-text {
+  font-size: 28px;
+}
+
 
 .box {
   display: flex !important;
