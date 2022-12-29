@@ -21,13 +21,15 @@
         <p>
             {{session['reservation']}}
         </p>
-        <form action="{{url_for('rsvp')}}" name="rsvp_form">
-            {% for i in range(session['reservation']['attendees']| length) %}
-                {% set attendee = session['reservation']['attendees'][i] %}
+        <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form">
+            {% for i in range(session['reservation']| length) %}
+                {% set attendee = session['reservation'][i] %}
+                <input type="hidden" id="rsvpName" name="rsvp_name_{{i}}" value="{{attendee['name']}}">
+                <input type="hidden" id="rsvpId" name="rsvp_id_{{i}}" value="{{attendee['invite_id']}}">
                 <p>Will {{attendee['name']}} be attending?</p>
-                <input type="radio" id="attendyes" name="attending_{{i}}" value="Yes">
+                <input type="radio" id="attendyes" name="attending_{{i}}" value="Yes" required>
                 <label for="attendyes">Yes</label><br>
-                <input type="radio" id="attendno" name="attending_{{i}}" value="No">
+                <input type="radio" id="attendno" name="attending_{{i}}" value="No" required>
                 <label for="attendno">No</label><br>
 
                 <div id="ifattending_{{i}}" hidden>
@@ -39,25 +41,22 @@
                     <input type="radio" id="food3" name="food_pref_{{i}}" value="Veg">
                     <label for="food3">Vegan / Vegatarian / Gluten Free</label><br>
 
-                    {% if attendee['rehearsal'] %}
+                    {% if attendee['rehearsal'] == 'TRUE' %}
                         <p>Will {{attendee['name']}} be attending the rehearsal dinner?</p>
-                        <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes">
+                        <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes" required>
                         <label for="attendyes">Yes</label><br>
-                        <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No">
+                        <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No" required>
                         <label for="attendno">No</label><br>
                     {% endif %}
-
-                    <p>Will {{attendee['name']}} be attending brunch?</p>
-                    <input type="radio" id="attendyes" name="brunch_{{i}}" value="Yes">
-                    <label for="attendyes">Yes</label><br>
-                    <input type="radio" id="attendno" name="brunch_{{i}}" value="No">
-                    <label for="attendno">No</label><br>
                 </div>
                 <hr>
             {% endfor %}
             <input type="submit">
         </form>
       {% else %}
+        {% if session['not_found'] %}
+            <p>Could not find invitee under the provided name</p>
+        {% endif %}
         <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
             <input type="text" name="name">
             <input type="submit">
