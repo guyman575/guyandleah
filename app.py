@@ -9,10 +9,9 @@ from flask_mobility import Mobility
 from oauth2client.service_account import ServiceAccountCredentials
 
 
-
 app = Flask(__name__)
 app._static_folder = "static"
-app.secret_key = 'butts'
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 Mobility(app)
 credentials_dict = json.loads(os.environ.get('GOOGLE_APPLICATION_CREDENTIALS'))
 credential = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict,
@@ -21,6 +20,7 @@ credential = ServiceAccountCredentials.from_json_keyfile_dict(credentials_dict,
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"])
 client = gspread.authorize(credential)
+PASSPHRASE = os.environ.get('WEDDING_PASSPHRASE')
 
 @app.before_request
 def before_request():
@@ -32,6 +32,29 @@ def before_request():
     url = request.url.replace('http://', 'https://', 1)
     code = 301
     return redirect(url, code=code)
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for('home'))
+
+
+@app.route("/auth",methods=['GET', 'POST'])
+def auth():
+    if flask.request.method == 'GET':
+        return render_template("auth.html")
+    else:
+        passphrase_entered = request.form.get("passphrase")
+        print(passphrase_entered)
+        if passphrase_entered == PASSPHRASE:
+            session['authenticated'] = True
+            return redirect(url_for('rsvp'))
+        else:
+            if not session.get('failed_pass_attempts'):
+                session['failed_pass_attempts'] = 0
+            session['failed_pass_attempts'] += 1
+            return render_template("auth.html")
+
 
 @app.route("/")
 def home():
@@ -55,9 +78,8 @@ def registry():
 
 @app.route("/rsvp", methods=['GET', 'POST'])
 def rsvp():
-    session['not_found'] = False
-    if session.get('reservation'):
-        session.pop('reservation')
+    if not session.get('authenticated'):
+        return redirect(url_for('auth'))
 
     if flask.request.method == 'POST':
         rsvps = []
@@ -65,10 +87,14 @@ def rsvp():
             if request.form.get(f"attending_{i}"):
                 rsvps.append(Rsvp.from_form(request.form,i))
         makeRsvp(rsvps)
+        session.pop('reservation', None)
+        session.pop('not_found', None)
     return render_template("rsvp.html")
 
 @app.route("/reservation", methods=['POST'])
 def reservation():
+    if not session.get('authenticated'):
+        return redirect(url_for('auth'))
     # Sanitize input so dumb friends cant code inject us
     input_name = re.sub(r'[^a-zA-Z\s]', '',request.form.get('name'))
     print(input_name)
@@ -79,7 +105,8 @@ def reservation():
         session['not_found'] = False
     else:
         session['not_found'] = True
-    return render_template("rsvp.html")
+        session.pop('reservation', None)
+    return redirect(url_for('rsvp'))
 
 def getReservationData(name):
     reservations_db_sheet = client.open_by_key('14Je37BKWxVVIXHfiMnGu37m_0KI9pKyept4ZOVotWW8').worksheet("reservations")
