@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, jsonify, url_for, session
 from flask_mobility import Mobility
+import flask
 
 app = Flask(__name__)
 app._static_folder = "static"
@@ -37,22 +38,21 @@ def faq():
 def registry():
     return render_template("registry.html")
 
-# Uncomment below to enable rsvp route
-# @app.route("/rsvp")
-# def rsvp():
-#     if session.get('reservation'):
-#         session.pop('reservation')
-#     return render_template("rsvp.html")
+@app.route("/rsvp", methods=['GET', 'POST'])
+def rsvp():
+    if session.get('reservation'):
+        session.pop('reservation')
+    return render_template("rsvp.html")
 
-# @app.route("/reservation", methods=['POST'])
-# def reservation():
+@app.route("/reservation", methods=['POST'])
+def reservation():
 
-#     reservation = {'attendees': [
-#         {'name': 'John Doe', 'rehearsal': True},
-#         {'name': 'Jane Doe', 'rehearsal': False}
-#     ]}
-#     session['reservation'] = reservation
-#     return render_template("rsvp.html")
+    reservation = {'attendees': [
+        {'name': 'John Doe', 'rehearsal': True},
+        {'name': 'Jane Doe', 'rehearsal': False}
+    ]}
+    session['reservation'] = reservation
+    return render_template("rsvp.html")
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000)

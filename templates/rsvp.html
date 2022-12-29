@@ -21,7 +21,7 @@
         <p>
             {{session['reservation']}}
         </p>
-        <form name="rsvp_form">
+        <form action="{{url_for('rsvp')}}" name="rsvp_form">
             {% for i in range(session['reservation']['attendees']| length) %}
                 {% set attendee = session['reservation']['attendees'][i] %}
                 <p>Will {{attendee['name']}} be attending?</p>
