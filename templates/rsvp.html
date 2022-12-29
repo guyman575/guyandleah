@@ -48,9 +48,9 @@
 
                         {% if attendee['rehearsal'] == 'TRUE' %}
                             <p>Will {{attendee['name']}} be attending the rehearsal dinner?</p>
-                            <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes" required>
+                            <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes">
                             <label for="attendyes">Yes</label><br>
-                            <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No" required>
+                            <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No">
                             <label for="attendno">No</label><br>
                         {% endif %}
                     </div>
