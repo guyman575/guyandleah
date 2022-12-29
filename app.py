@@ -1,11 +1,13 @@
-from flask import Flask, render_template, request, redirect, jsonify, url_for, session
-from flask_mobility import Mobility
 import flask
 import gspread
 import json
-from oauth2client.service_account import ServiceAccountCredentials
-import re
 import os
+import re
+
+from flask import Flask, render_template, request, redirect, jsonify, url_for, session
+from flask_mobility import Mobility
+from oauth2client.service_account import ServiceAccountCredentials
+
 
 
 app = Flask(__name__)
