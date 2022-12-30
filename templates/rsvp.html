@@ -27,6 +27,9 @@
         </form>
         {% if session['reservation'] is defined %}
             <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form">
+                <hr>
+                <label for="email">Email Adress: </label><br>
+                <input type="email" name="email">
                 {% for i in range(session['reservation']| length) %}
                     {% set attendee = session['reservation'][i] %}
                     <input type="hidden" id="rsvpName" name="rsvp_name_{{i}}" value="{{attendee['name']}}">
