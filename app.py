@@ -30,12 +30,14 @@ def before_request():
     code = 301
     return redirect(url, code=code)
 
+# Hidden route used for debugging purposes to make it easy to clear session cookies
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for('home'))
 
 
+# Authentication required only for RSVP page, redirects to rsvp page on success
 @app.route("/auth",methods=['GET', 'POST'])
 def auth():
     if flask.request.method == 'GET':
@@ -45,6 +47,7 @@ def auth():
         print(passphrase_entered)
         if passphrase_entered == PASSPHRASE:
             session['authenticated'] = True
+            session['failed_pass_attempts'] = 0
             return redirect(url_for('rsvp'))
         else:
             if not session.get('failed_pass_attempts'):
