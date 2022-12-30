@@ -97,9 +97,7 @@ def reservation():
         return redirect(url_for('auth'))
     # Sanitize input so dumb friends cant code inject us
     input_name = re.sub(r'[^a-zA-Z\s]', '',request.form.get('name'))
-    print(input_name)
     reservations = SHEET_SERVICE.getReservationData(input_name)
-    print(reservations)
     if reservations:
         session['reservation'] = reservations
         session['not_found'] = False
