@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>RSVP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="{{ url_for('static', filename='js/rsvp.js') }}"></script>
+
+<div class="box">
+  {% include 'newnav.html' %}
+  <div class="w3-container bg-smoky-green first-section faq-main" id="us">
+        <h1 class="w3-wide">CAN YOU COME?</h1>
+        <p>We really hope you can make it.</p>
+        <p>Enter name as written on invitation</p>
+        {% if session['not_found'] %}
+            <p>Could not find invitee under the provided name</p>
+        {% endif %}
+        <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
+            <input type="text" name="name">
+            <input type="submit">
+        </form>
+        {% if session['reservation'] is defined %}
+            <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form">
+                <hr>
+                <label for="email">Email Adress: </label><br>
+                <input type="email" name="email">
+                {% for i in range(session['reservation']| length) %}
+                    {% set attendee = session['reservation'][i] %}
+                    <input type="hidden" id="rsvpName" name="rsvp_name_{{i}}" value="{{attendee['name']}}">
+                    <input type="hidden" id="rsvpId" name="rsvp_id_{{i}}" value="{{attendee['invite_id']}}">
+                    <p>Will {{attendee['name']}} be attending?</p>
+                    <input type="radio" id="attendyes" name="attending_{{i}}" value="Yes" required>
+                    <label for="attendyes">Yes</label><br>
+                    <input type="radio" id="attendno" name="attending_{{i}}" value="No" required>
+                    <label for="attendno">No</label><br>
+
+                    <div id="ifattending_{{i}}" hidden>
+                        <p>Food preference for {{attendee['name']}}</p>
+                        <input type="radio" id="food1" name="food_pref_{{i}}" value="Fish">
+                        <label for="food1">Fish</label><br>
+                        <input type="radio" id="food2" name="food_pref_{{i}}" value="Beef">
+                        <label for="food2">Beef</label><br>
+                        <input type="radio" id="food3" name="food_pref_{{i}}" value="Veg">
+                        <label for="food3">Vegan / Vegatarian / Gluten Free</label><br>
+
+                        {% if attendee['rehearsal'] == 'TRUE' %}
+                            <p>Will {{attendee['name']}} be attending the rehearsal dinner?</p>
+                            <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes">
+                            <label for="attendyes">Yes</label><br>
+                            <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No">
+                            <label for="attendno">No</label><br>
+                        {% endif %}
+                    </div>
+                    <hr>
+                {% endfor %}
+                <input type="submit">
+            </form>
+        {% endif %}
+  </div>
+</div>
+</body>
+</html>
