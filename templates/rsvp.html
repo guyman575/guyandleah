@@ -17,14 +17,22 @@
   <div class="w3-container bg-smoky-green first-section faq-main" id="us">
         <h1 class="w3-wide">CAN YOU COME?</h1>
         <p>We really hope you can make it.</p>
-        <p>Enter name as written on invitation</p>
-        {% if session['not_found'] %}
-            <p>Could not find invitee under the provided name</p>
-        {% endif %}
-        <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
-            <input type="text" name="name">
-            <input type="submit">
+        {% if session['reservation'] is  not defined %}
+            <p>Enter name as written on invitation</p>
+            {% if session['not_found'] %}
+                <p>Could not find invitee under the provided name</p>
+            {% endif %}
+            <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
+                <input type="text" name="name"> 
+                <input type="submit">
+                <!-- value="{{session['requested_user']|default('',true)}}" -->
+            </form>
+        {% else %}
+        <form action="{{url_for('resetrsvp')}}" method="post" name="reset_reservation">
+            <input type="submit" value="reset">
         </form>
+        {% endif %}
+
         {% if session['reservation'] is defined %}
             <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form">
                 <hr>

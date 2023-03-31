@@ -44,7 +44,6 @@ def auth():
         return render_template("auth.html")
     else:
         passphrase_entered = request.form.get("passphrase")
-        print(passphrase_entered)
         if passphrase_entered == PASSPHRASE:
             session['authenticated'] = True
             session['failed_pass_attempts'] = 0
@@ -101,11 +100,18 @@ def reservation():
     if reservations:
         session['reservation'] = reservations
         session['not_found'] = False
+        session['requested_user'] = input_name
     else:
         session['not_found'] = True
         session.pop('reservation', None)
     return redirect(url_for('rsvp'))
 
+@app.route("/resetrsvp", methods=['POST'])
+def resetrsvp():
+    session.pop('reservation', None)
+    session.pop('not_found', None)
+    session.pop('requested_user', None)
+    return redirect(url_for('rsvp'))
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000)
