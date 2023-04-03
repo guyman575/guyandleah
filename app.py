@@ -89,7 +89,7 @@ def rsvp():
         session.pop('reservation', None)
         session.pop('not_found', None)
         session.pop('requested_user', None)
-        return render_template("sendit.html")
+        return redirect(url_for('sendit'))
 
     return render_template("rsvp.html")
 
