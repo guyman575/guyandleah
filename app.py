@@ -88,6 +88,9 @@ def rsvp():
         SHEET_SERVICE.makeRsvp(rsvps)
         session.pop('reservation', None)
         session.pop('not_found', None)
+        session.pop('requested_user', None)
+        return render_template("sendit.html")
+
     return render_template("rsvp.html")
 
 @app.route("/reservation", methods=['POST'])
@@ -112,6 +115,10 @@ def resetrsvp():
     session.pop('not_found', None)
     session.pop('requested_user', None)
     return redirect(url_for('rsvp'))
+
+@app.route("/sendit")
+def sendit():
+    return render_template("sendit.html")
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000)
