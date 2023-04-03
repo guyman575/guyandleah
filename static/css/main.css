@@ -129,10 +129,3 @@ input[type='radio'] {
   margin-right: 7px;
 }
 
-.br-large {
-  display:block;
-  content:"";
-  margin-top:1em;
-  line-height:800%;
-  vertical-align:top;
-}
