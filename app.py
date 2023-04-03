@@ -43,7 +43,7 @@ def auth():
     if flask.request.method == 'GET':
         return render_template("auth.html")
     else:
-        passphrase_entered = request.form.get("passphrase")
+        passphrase_entered = re.sub(r'[^a-zA-Z\s0-9]', '',request.form.get("passphrase")) 
         if passphrase_entered == PASSPHRASE:
             session['authenticated'] = True
             session['failed_pass_attempts'] = 0
