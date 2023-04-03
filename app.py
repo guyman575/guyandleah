@@ -95,7 +95,7 @@ def reservation():
     if not session.get('authenticated'):
         return redirect(url_for('auth'))
     # Sanitize input so dumb friends cant code inject us
-    input_name = re.sub(r'[^a-zA-Z\s]', '',request.form.get('name'))
+    input_name = re.sub(r'[^a-zA-Z\s-]', '',request.form.get('name'))
     reservations = SHEET_SERVICE.getReservationData(input_name)
     if reservations:
         session['reservation'] = reservations
