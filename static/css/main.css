@@ -123,3 +123,16 @@ p {line-height: 2}
 .extra-margin {
   margin-bottom: 30px;
 }
+
+input[type='radio'] { 
+  transform: scale(2);
+  margin-right: 7px;
+}
+
+.br-large {
+  display:block;
+  content:"";
+  margin-top:0.5em;
+  line-height:190%;
+  vertical-align:top;
+}

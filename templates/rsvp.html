@@ -41,23 +41,23 @@
                     <input type="hidden" id="rsvpId" name="rsvp_id_{{i}}" value="{{attendee['invite_id']}}">
                     <p>Will {{attendee['name']}} be attending?</p>
                     <input type="radio" id="attendyes" name="attending_{{i}}" value="Yes" required>
-                    <label for="attendyes">Yes</label><br>
+                    <label for="attendyes">Yes</label><br class="br-large">
                     <input type="radio" id="attendno" name="attending_{{i}}" value="No" required>
                     <label for="attendno">No</label><br>
 
                     <div id="ifattending_{{i}}" hidden>
                         <p>Food preference for {{attendee['name']}}</p>
                         <input type="radio" id="food1" name="food_pref_{{i}}" value="Fish">
-                        <label for="food1">Salmon</label><br>
+                        <label for="food1">Salmon</label><br class="br-large">
                         <input type="radio" id="food2" name="food_pref_{{i}}" value="Beef">
-                        <label for="food2">Beef Short Rib</label><br>
+                        <label for="food2">Beef Short Rib</label><br class="br-large">
                         <input type="radio" id="food3" name="food_pref_{{i}}" value="Veg">
                         <label for="food3">Vegan / Vegatarian / Gluten Free</label><br>
 
                         {% if attendee['rehearsal'] == 'TRUE' %}
                             <p>Will {{attendee['name']}} be attending the rehearsal dinner?</p>
                             <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes">
-                            <label for="attendyes">Yes</label><br>
+                            <label for="attendyes">Yes</label><br class="br-large">
                             <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No">
                             <label for="attendno">No</label><br>
                         {% endif %}
