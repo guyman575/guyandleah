@@ -16,16 +16,15 @@
   {% include 'newnav.html' %}
   <div class="w3-container bg-smoky-green first-section faq-main" id="us">
         <h1 class="w3-wide">CAN YOU COME?</h1>
-        <p>We really hope you can make it.</p>
+        <p id="rsvpformtop">We really hope you can make it.</p>
         {% if session['reservation'] is  not defined %}
-            <p>Enter name as written on invitation</p>
+            <p>Enter name as written on invitation. If you need to update your RSVP you can just resubmit the form</p>
             {% if session['not_found'] %}
                 <p>Could not find invitee under the provided name</p>
             {% endif %}
             <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
                 <input type="text" name="name"> 
                 <input type="submit">
-                <!-- value="{{session['requested_user']|default('',true)}}" -->
             </form>
         {% else %}
         <form action="{{url_for('resetrsvp')}}" method="post" name="reset_reservation">
@@ -36,8 +35,6 @@
         {% if session['reservation'] is defined %}
             <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form">
                 <hr>
-                <label for="email">Email Adress: </label><br>
-                <input type="email" name="email">
                 {% for i in range(session['reservation']| length) %}
                     {% set attendee = session['reservation'][i] %}
                     <input type="hidden" id="rsvpName" name="rsvp_name_{{i}}" value="{{attendee['name']}}">
@@ -53,7 +50,7 @@
                         <input type="radio" id="food1" name="food_pref_{{i}}" value="Fish">
                         <label for="food1">Salmon</label><br>
                         <input type="radio" id="food2" name="food_pref_{{i}}" value="Beef">
-                        <label for="food2">Short Rib</label><br>
+                        <label for="food2">Beef Short Rib</label><br>
                         <input type="radio" id="food3" name="food_pref_{{i}}" value="Veg">
                         <label for="food3">Vegan / Vegatarian / Gluten Free</label><br>
 
@@ -67,7 +64,7 @@
                     </div>
                     <hr>
                 {% endfor %}
-                <input type="submit">
+                <input type="submit" id="rsvpsubmitbutton">
             </form>
         {% endif %}
   </div>

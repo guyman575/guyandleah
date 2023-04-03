@@ -40,6 +40,5 @@ class SheetService():
             rsvp.invite_id,
             rsvp.attending,
             rsvp.rehearsal_attending,
-            rsvp.food,
-            rsvp.email] for rsvp in rsvps]
+            rsvp.food] for rsvp in rsvps]
         rsvp_sheet.append_rows(values,insert_data_option='INSERT_ROWS')
