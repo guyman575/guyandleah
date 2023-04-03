@@ -133,6 +133,6 @@ input[type='radio'] {
   display:block;
   content:"";
   margin-top:1em;
-  line-height:400%;
+  line-height:800%;
   vertical-align:top;
 }
