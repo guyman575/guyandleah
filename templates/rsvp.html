@@ -22,7 +22,7 @@
             {% if session['not_found'] %}
                 <p>Could not find invitee under the provided name</p>
             {% endif %}
-            <form action="{{url_for('reservation')}}" method="post" name="get_reservation">
+            <form action="{{url_for('reservation')}}" method="post" name="get_reservation" id="rsvpfinderform">
                 <input type="text" name="name"> 
                 <input type="submit">
             </form>
@@ -33,7 +33,7 @@
         {% endif %}
 
         {% if session['reservation'] is defined %}
-            <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form" class="rsvpform">
+            <form action="{{url_for('rsvp')}}" method="post" name="rsvp_form" class="rsvpform" id="rsvpformid">
                 <hr>
                 {% for i in range(session['reservation']| length) %}
                     {% set attendee = session['reservation'][i] %}
