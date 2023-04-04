@@ -16,3 +16,12 @@ class Rsvp:
         rehearsal = form.get(f"rehearsal_{index}")
         food = form.get(f"food_pref_{index}")
         return Rsvp(name,id,attending,rehearsal,food)
+
+    @classmethod
+    def from_json(cls,jsonblob):
+        name = jsonblob['name']
+        id = jsonblob['id']
+        attending = jsonblob['attending']
+        rehearsal = jsonblob['rehearsal']
+        food = jsonblob['food']
+        return Rsvp(name,id,attending,rehearsal,food)

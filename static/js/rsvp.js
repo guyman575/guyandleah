@@ -1,4 +1,4 @@
-var MAX_GROUP_SIZE = 2;
+var MAX_GROUP_SIZE = 10;
 
 for (let i = 0; i < MAX_GROUP_SIZE; i++){
     $(document).ready(function(){
