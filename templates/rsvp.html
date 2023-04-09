@@ -55,7 +55,7 @@
                         <label for="food3">Vegan / Vegatarian / Gluten Free</label><br>
 
                         {% if attendee['rehearsal'] == 'TRUE' %}
-                            <p>Will {{attendee['name']}} be attending the rehearsal dinner?</p>
+                            <p>Will {{attendee['name']}} be attending the rehearsal dinner? (attire: dressy casual)</p>
                             <input type="radio" id="attendyes" name="rehearsal_{{i}}" value="Yes">
                             <label for="attendyes">Yes</label><br><br>
                             <input type="radio" id="attendno" name="rehearsal_{{i}}" value="No">
