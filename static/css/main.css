@@ -123,3 +123,12 @@ p {line-height: 2}
 .extra-margin {
   margin-bottom: 30px;
 }
+
+input[type='radio'] { 
+  transform: scale(2);
+  margin-right: 7px;
+}
+
+.rsvpformdiv {
+  padding-bottom: 10px;
+}

@@ -3,7 +3,7 @@ import json
 import os
 import re
 
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_mobility import Mobility
 from util.rsvp import Rsvp
 from util.sheet_service import SheetService
@@ -43,8 +43,7 @@ def auth():
     if flask.request.method == 'GET':
         return render_template("auth.html")
     else:
-        passphrase_entered = request.form.get("passphrase")
-        print(passphrase_entered)
+        passphrase_entered = re.sub(r'[^a-zA-Z\s0-9]', '',request.form.get("passphrase")) 
         if passphrase_entered == PASSPHRASE:
             session['authenticated'] = True
             session['failed_pass_attempts'] = 0
@@ -76,6 +75,10 @@ def faq():
 def registry():
     return render_template("registry.html")
 
+# @app.route("/rsvp2")
+# def rsvp2():
+#     return render_template("rsvp2.html")
+
 @app.route("/rsvp", methods=['GET', 'POST'])
 def rsvp():
     if not session.get('authenticated'):
@@ -83,12 +86,17 @@ def rsvp():
 
     if flask.request.method == 'POST':
         rsvps = []
-        for i in range(2):
+        for i in range(10):
             if request.form.get(f"attending_{i}"):
                 rsvps.append(Rsvp.from_form(request.form,i))
+            else:
+                break
         SHEET_SERVICE.makeRsvp(rsvps)
         session.pop('reservation', None)
         session.pop('not_found', None)
+        session.pop('requested_user', None)
+        return redirect(url_for('sendit'))
+
     return render_template("rsvp.html")
 
 @app.route("/reservation", methods=['POST'])
@@ -96,16 +104,68 @@ def reservation():
     if not session.get('authenticated'):
         return redirect(url_for('auth'))
     # Sanitize input so dumb friends cant code inject us
-    input_name = re.sub(r'[^a-zA-Z\s]', '',request.form.get('name'))
+    input_name = re.sub(r'[^a-zA-Z\s-]', '',request.form.get('name'))
     reservations = SHEET_SERVICE.getReservationData(input_name)
     if reservations:
         session['reservation'] = reservations
         session['not_found'] = False
+        session['requested_user'] = input_name
     else:
         session['not_found'] = True
         session.pop('reservation', None)
     return redirect(url_for('rsvp'))
 
+@app.route("/resetrsvp", methods=['POST'])
+def resetrsvp():
+    session.pop('reservation', None)
+    session.pop('not_found', None)
+    session.pop('requested_user', None)
+    return redirect(url_for('rsvp'))
+
+@app.route("/sendit")
+def sendit():
+    return render_template("sendit.html")
+
+# @app.route("/api/v1/res/<name>", methods=['GET'])
+# def v1res(name):
+#     if not session.get('authenticated'):
+#         return redirect(url_for('auth'))
+#     input_name = re.sub(r'[^a-zA-Z\s-]', '',name)
+#     if flask.request.method == 'GET':
+#         reservations = SHEET_SERVICE.getReservationData(input_name)
+#         print(reservations)
+#         return jsonify({'reservations':reservations, 'sanitized_name': input_name})
+
+# @app.route("/api/v1/rsvp", methods=['POST'])
+# def v1rsvp():
+#     if not session.get('authenticated') and not is_local(app,request):
+#         return redirect(url_for('auth'))
+#     if flask.request.method == 'POST':
+#         request_data = request.get_json()
+#         rsvps = [Rsvp.from_json(blob) for blob in request_data['rsvps']]
+#         SHEET_SERVICE.makeRsvp(rsvps)
+#         return jsonify({})
+
+# @app.route("/api/v1/auth", methods=['POST'])
+# def v1auth():
+#     passphrase_entered = re.sub(r'[^a-zA-Z\s0-9]', '',request.get_json()['passphrase']) 
+#     if passphrase_entered == PASSPHRASE:
+#         session['authenticated'] = True
+#         session['failed_pass_attempts'] = 0
+#         return jsonify({"authenticated": True})
+#     else:
+#         if not session.get('failed_pass_attempts'):
+#             session['failed_pass_attempts'] = 0
+#         session['failed_pass_attempts'] += 1
+#         return jsonify({"authenticated": False})
+
+
+
+        
+def is_local(app, request):
+    return app.debug or \
+        request.url_root.startswith('http://127.0.0.1') or \
+        request.url_root.startswith('http://localhost')
 
 if __name__ == '__main__':
     app.run(host='localhost', port=8000)

@@ -1,4 +1,4 @@
-var MAX_GROUP_SIZE = 2;
+var MAX_GROUP_SIZE = 10;
 
 for (let i = 0; i < MAX_GROUP_SIZE; i++){
     $(document).ready(function(){
@@ -13,3 +13,13 @@ for (let i = 0; i < MAX_GROUP_SIZE; i++){
         });
     });
 }
+
+$(document).ready(function(){
+    $('form').each(function() {
+        $(this).submit(
+            function() {
+                $(this).find(':input[type=submit]').prop('disabled', true);
+            }
+        );
+    });
+});

@@ -1,15 +1,12 @@
 
 
 class Rsvp:
-    def __init__(self,name,invite_id,attending,rehearsal_attending, food, email):
+    def __init__(self,name,invite_id,attending,rehearsal_attending, food):
         self.name = name
         self.invite_id = invite_id
         self.attending = attending
         self.rehearsal_attending = rehearsal_attending
         self.food = food
-        # Email will be the same for both members of a couple
-        # as only one email is collected
-        self.email = email
 
     @classmethod
     def from_form(cls,form,index):
@@ -18,5 +15,13 @@ class Rsvp:
         attending = form.get(f"attending_{index}")
         rehearsal = form.get(f"rehearsal_{index}")
         food = form.get(f"food_pref_{index}")
-        email = form.get("email")
-        return Rsvp(name,id,attending,rehearsal,food, email)
+        return Rsvp(name,id,attending,rehearsal,food)
+
+    @classmethod
+    def from_json(cls,jsonblob):
+        name = jsonblob['name']
+        id = jsonblob['id']
+        attending = jsonblob['attending']
+        rehearsal = jsonblob['rehearsal']
+        food = jsonblob['food']
+        return Rsvp(name,id,attending,rehearsal,food)

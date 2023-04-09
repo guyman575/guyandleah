@@ -22,7 +22,6 @@ class SheetService():
         reservations_db_sheet = \
             self.client.open_by_key(self.sheet_id).worksheet(SheetService.RESERVATIONS_SHEET)
         all_reservations = reservations_db_sheet.get_all_records()
-        print(all_reservations)
         invite_id = 0
         for reservation in all_reservations:
             if reservation['name'].lower() == name.lower():
@@ -41,6 +40,5 @@ class SheetService():
             rsvp.invite_id,
             rsvp.attending,
             rsvp.rehearsal_attending,
-            rsvp.food,
-            rsvp.email] for rsvp in rsvps]
+            rsvp.food] for rsvp in rsvps]
         rsvp_sheet.append_rows(values,insert_data_option='INSERT_ROWS')
