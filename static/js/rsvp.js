@@ -9,10 +9,16 @@ for (let i = 0; i < MAX_GROUP_SIZE; i++){
                 $(`input[name$="food_pref_${i}"]`).each(function() {
                     $(this).prop('required', true);
                 });
+                $(`input[name$="rehearsal_${i}"]`).each(function() {
+                    $(this).prop('required', true);
+                });
             }
             else {
                 $(`#ifattending_${i}`).hide();
                 $(`input[name$="food_pref_${i}"]`).each(function() {
+                    $(this).prop('required', false);
+                });
+                $(`input[name$="rehearsal_${i}"]`).each(function() {
                     $(this).prop('required', false);
                 });
             }
