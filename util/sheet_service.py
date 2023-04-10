@@ -24,7 +24,7 @@ class SheetService():
         all_reservations = reservations_db_sheet.get_all_records()
         invite_id = 0
         for reservation in all_reservations:
-            if reservation['name'].lower() == name.lower():
+            if reservation['name'].lower().strip() == name.lower().strip():
                 invite_id = reservation['invite_id']
         
         matching_reservations = [res for res in all_reservations if res['invite_id'] == invite_id]
