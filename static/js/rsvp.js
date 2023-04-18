@@ -5,11 +5,23 @@ for (let i = 0; i < MAX_GROUP_SIZE; i++){
         $(`input[name$="attending_${i}"]`).click(function(){
             var inputValue = $(this).val();
             if (inputValue == "Yes"){
-                $(`#ifattending_${i}`).show()
+                $(`#ifattending_${i}`).show();
+                $(`input[name$="food_pref_${i}"]`).each(function() {
+                    $(this).prop('required', true);
+                });
+                $(`input[name$="rehearsal_${i}"]`).each(function() {
+                    $(this).prop('required', true);
+                });
             }
-            else (
-                $(`#ifattending_${i}`).hide()
-            )
+            else {
+                $(`#ifattending_${i}`).hide();
+                $(`input[name$="food_pref_${i}"]`).each(function() {
+                    $(this).prop('required', false);
+                });
+                $(`input[name$="rehearsal_${i}"]`).each(function() {
+                    $(this).prop('required', false);
+                });
+            }
         });
     });
 }

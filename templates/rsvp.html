@@ -18,7 +18,7 @@
         <h1 class="w3-wide">CAN YOU COME?</h1>
         <p id="rsvpformtop">We really hope you can make it.</p>
         {% if session['reservation'] is  not defined %}
-            <p>Enter name as written on invitation. If you need to update your RSVP you can just resubmit the form</p>
+            <p>Enter one name as written on invitation. If you need to update your RSVP you can just resubmit the form</p>
             {% if session['not_found'] %}
                 <p>Could not find invitee under the provided name</p>
             {% endif %}
